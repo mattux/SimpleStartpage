@@ -1,0 +1,173 @@
+<!--
+#  SimpleStartpage
+#  ver 0.1
+#
+#  Copyright © 2014 mattux <andovais@gmail.com>
+#  This work is free. You can redistribute it and/or modify it under the
+terms of the Do What The Fuck You Want To Public License, Version 2,
+as published by Sam Hocevar. See the COPYING file for more details.
+-->
+
+<html>
+<head>
+	<title>Startpage</title>
+	<link rel="stylesheet" type="text/css" href="home_style.css"/>
+	<link rel="stylesheet" type="text/css" href="ubuntu-fontfacekit/stylesheet.css">
+
+
+<script type="text/javascript">
+
+var flag = 0; //1 -> link non visibili | 0 -> link visibili
+//var allHTMLTags = new Array();
+var flag_id; //id della lista mostrata
+var tit_open;
+
+
+function apri(nome, titoli, elenco)
+	{
+			//elenco.style.left = "300px";
+			elenco.style.top = "80px";
+			elenco.style.opacity = "1";
+			elenco.style.visibility = "visible";
+
+			//elenco.style.left = "250px";
+			titoli.style.width = "240px";
+
+			flag_id = nome;
+			flag=1;
+
+
+	}
+
+function chiudi(elenco, titoli)
+	{
+		//elenco.style.left = "-250px";
+		elenco.style.opacity = "0";
+		elenco.style.top = "50px";
+		elenco.style.visibility = "collapse";
+		//elenco.style.left = "-500px";
+		titoli.style.width = "200px";
+
+		flag=0;
+	}
+
+
+
+function collegamenti(nome, titolo) //nome -> nome lista | titolo -> nome intestazione
+{
+	var elenco = document.getElementById(nome); //elenco: lista dei link della sezione
+	//var allHTMLTags=document.getElementsByTagName("*");
+
+
+	var titoli = document.getElementById(titolo); //div intestazione
+
+
+
+	/* se flag == 0 i link devono essere mostrati*/
+	if(!flag)
+		{
+
+			apri(nome, titoli, elenco);
+			tit_open = titoli;
+
+		}
+	else
+		if(flag_id == nome)
+			{
+				chiudi(elenco, titoli);
+			}
+		else
+			{
+				var aperto = document.getElementById(flag_id);
+
+				chiudi(aperto, titoli);
+
+				if(tit_open.style.width)
+					tit_open.style.width = "200px"; //ridimensiona l'intestazione gia' aperta
+
+
+				apri(nome, titoli, elenco);
+				tit_open = titoli;
+
+			}
+
+}
+
+</script>
+</head>
+
+<body>
+
+	<div id="testata" class="testata">
+		<h1>Startpage</h1>
+	</div>
+
+<div id="corpo" class="corpo">
+
+
+
+				<div class="contenuto_due">
+
+
+					<div id="gruppo_1" class="link">
+						<div id="indice_1" class="titolo"  onclick='collegamenti("lista_1", "indice_1")'>
+							<h2>Item#1</h2>
+						</div>
+
+						<ul id="lista_1" class="link">
+							<li><a href="#">link#1</a></li>
+							<li><a href="#">link#2</a></li>
+							<li><a href="#">link#3</a></li>
+							<li><a href="#">link#4</a></li>
+							<li><a href="#">link#5</a></li>
+
+							<li class="close" onclick='collegamenti("lista_1", "indice_1")'>Chiudi</li>
+						</ul>
+
+					</div>
+
+
+
+					<div id="gruppo_"" class="link">
+						<div id="indice_2" class="titolo" onclick='collegamenti("lista_2", "indice_2");'>
+							<h2>Item#2</h2>
+						</div>
+
+						<ul id="lista_2" class="link">
+
+							<li><a href="#">link#1</a></li>
+							<li><a href="#">link#2</a></li>
+							<li><a href="#">link#3</a></li>
+							<li><a href="#">link#4</a></li>
+							<li><a href="#">link#5</a></li>
+
+							<li class="close" onclick='collegamenti("lista_2", "indice_2")'>Chiudi</li>
+						</ul>
+
+					</div>
+
+					<div id="gruppo_"" class="link">
+						<div id="indice_3" class="titolo" onclick='collegamenti("lista_3", "indice_3");'>
+							<h2>Item#3</h2>
+						</div>
+
+						<ul id="lista_3" class="link">
+
+							<li><a href="#">link#1</a></li>
+							<li><a href="#">link#2</a></li>
+							<li><a href="#">link#3</a></li>
+							<li><a href="#">link#4</a></li>
+							<li><a href="#">link#5</a></li>
+
+							<li class="close" onclick='collegamenti("lista_3", "indice_3")'>Chiudi</li>
+						</ul>
+
+					</div>
+
+
+</div>
+
+
+</body>
+
+</html>
